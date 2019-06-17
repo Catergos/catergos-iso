@@ -4,6 +4,8 @@ services:
 - docker
 
 arch:
+        packages:
+        - archiso
         script:
         - "sudo ./build.sh -v"
 
