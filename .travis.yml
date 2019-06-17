@@ -1,14 +1,15 @@
 sudo: required
 
-services:
-- docker
-
 arch:
-        packages:
-        - archiso
-        script:
-        - "sudo ./build.sh -v"
+  repos:
+    - archlinuxfr=http://repo.archlinux.fr/$arch
+  packages:
+    # pacman packages
+    - yaourt
+    - archiso
+  script:
+    - sudo ./build.sh -v
 
 script:
-- "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | sudo bash"
-
+  - "travis_wait 30 sleep 1800 &"
+  - curl -s https://raw.githubusercontent.com/xeon-zolt/arch-travis/master/arch-travis.sh | bash
