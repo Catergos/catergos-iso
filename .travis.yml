@@ -3,8 +3,9 @@ sudo: required
 services:
 - docker
 
-script:
-- "sudo ./build.sh -v"
+arch:
+        script:
+        - "sudo ./build.sh -v"
 
 script:
 - "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | bash"
