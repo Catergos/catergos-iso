@@ -3,12 +3,16 @@ sudo: required
 services:
   - docker
   
-before_install:
-  - docker pull base/archlinux
- 
+arch:
+  packages:
+  - archiso
+  mount:
+  - ~/.pkg-cache:/var/cache/pacman/pkg
+  before_install:
+  - "mkdir catergos"
+  script:
+  - "cp -r /usr/share/archiso/configs/releng/ catergos"
+  - "ls catergos"
+  
 script:
-  - docker run --name archi -d base/archlinux
-  - docker ps
-  - docker cp -r $PWD archi:/root/
-  - "travis_wait 30 sleep 1800 &"
-  - docer exec archi sudo ./build.sh -v
+- "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
