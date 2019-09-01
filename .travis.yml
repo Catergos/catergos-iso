@@ -11,8 +11,9 @@ arch:
   before_install:
   - "mkdir catergos"
   script:
-  - "cp -r /usr/share/archiso/configs/releng/ catergos"
-  - "ls catergos"
+  - "cp -r /usr/share/archiso/configs/releng/* catergos"
+  - "sudo catergos/build.sh"
+  - 
   
 script:
 - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
