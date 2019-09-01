@@ -1,0 +1,21 @@
+sudo: required
+
+services:
+  - docker
+
+arch:
+  packages:
+  - archiso
+  mount:
+  - ~/.pkg-cache:/var/cache/pacman/pkg
+  before_install:
+  - "mkdir catergos"
+  - "sudo mkdir /run/shm"
+  script:
+  - "cp -r /usr/share/archiso/configs/releng/* catergos"
+  - "ls catergos"
+  - "sudo catergos/build.sh -v"
+  - "ls catergos"
+  
+script:
+- "curl -s https://github.com/Catergos/arch-travis/blob/master/arch-travis.sh | sudo bash"
