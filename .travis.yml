@@ -2,7 +2,9 @@ sudo: required
 
 services:
   - docker
-  
+before_install:
+  - mkdir /run/shm
+
 arch:
   packages:
   - archiso
