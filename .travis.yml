@@ -15,8 +15,7 @@ arch:
   - "cp -r /usr/share/archiso/configs/releng/* catergos"
   - "ls catergos"
   - "sudo catergos/build.sh -v"
-  - "ls catergos"
-  - "ls"
   
 script:
 - "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | sudo bash"
+- "docker ps"
