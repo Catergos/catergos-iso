@@ -18,4 +18,4 @@ arch:
   - "ls catergos"
   
 script:
-- "curl -s https://github.com/Catergos/arch-travis/blob/master/arch-travis.sh | sudo bash"
+- "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | sudo bash"
