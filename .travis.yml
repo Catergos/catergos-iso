@@ -18,4 +18,3 @@ arch:
   
 script:
 - "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | sudo bash"
-- "docker ps"
