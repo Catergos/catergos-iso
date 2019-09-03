@@ -17,4 +17,4 @@ arch:
   - "sudo catergos/build.sh -v"
   
 script:
-- "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/master/arch-travis.sh | sudo bash"
+- "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/catergos-iso/arch-travis.sh | sudo bash"
