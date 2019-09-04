@@ -18,3 +18,4 @@ arch:
   
 script:
 - "sudo bash arch-travis.sh"
+- "ls"
