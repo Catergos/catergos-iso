@@ -21,7 +21,8 @@ script:
 - "ls"
 
 before_deploy:
-  - mv out/*.iso .
+  - sudo mv out/*.iso .
+  - sudo chown *.iso
   - export image_name="`echo *.iso`"
   - cat *.iso > "/home/travis/${image_name}"
 
