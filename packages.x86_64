@@ -1,4 +1,3 @@
-arch-install-scripts
 b43-fwcutter
 broadcom-wl
 btrfs-progs
@@ -64,3 +63,5 @@ wireless_tools
 wpa_supplicant
 wvdial
 xl2tpd
+
+
