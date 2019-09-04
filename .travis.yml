@@ -9,7 +9,7 @@ arch:
   before_install:
   - "sudo mkdir /run/shm"
   script:
-  - "sudo build.sh -v"
+  - "sudo /build/build.sh -v"
   
 script:
 - "sudo bash arch-travis.sh"
