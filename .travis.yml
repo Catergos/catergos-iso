@@ -17,4 +17,22 @@ arch:
   - "sudo catergos/build.sh -v"
   
 script:
-- "curl -s https://raw.githubusercontent.com/Catergos/arch-travis/catergos-iso/arch-travis.sh | sudo bash"
+- "sudo bash arch-travis.sh"
+- "ls"
+
+before_deploy:
+  - sudo mv out/*.iso .
+  - export image_name="`echo *.iso`"
+  - cat *.iso > "/home/travis/${image_name}"
+
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    draft: true
+    api_key:
+      secure: "XRKwnhv3TM40d/EJv/RsvShrrvAjrBJKZawyYi2LwcTDdHZ6zIyTvR9p3czfFNb2G2AA1mCDZSjQCS8foQCJOrruVbF7frKOYSFByth6r71zIBQHtwFkhToiQr/h+/tVRoW4THnxLvC7sr0Afxhq+4Xt45IBVmeEciUtWbyNs8q6THJWymU92UVoOcbNLccc8544dRx8C+Fd822vJ5b+XEk2ujmch6X4duIjLKK+g9830TJO2xTqw9GjhFcATdV9e3YEwcrUoFPZd5OPKBCa4lewh2Wcq6C7P058gd4pewDe23NIC5++tWm/YL2k7tjEXrVo/rI2IBGGqcT4G1AGkTXYKc2kK9b6Wx1yCtC5GMlj6iHMMXryNeRL2cRyZ8LU1psKnY+MscEpHQ6+Bt2SobdszEHkLHxefmgeEX++kRc6HV9hLRuEARuTuYFl+NUrYE/+lUPW/lv2bGX4eNskqB1ysI3rz/cF6/Qpdb9lllPhPe1YF6VOlATK1iQtqwo1y5/+yh8ssY5x+suf0JVlr7BisWcvRGZRCiye++qZMAUSyChiD2Xu40eo5kDcOloLieagXWul8ycJOmepu5UaM9ax2Rdmmdla8YdlTWRMaI1veZrWtttPADSuFHOpc0U7pG+U8Fvrwf/ww0c0JTWCd7gyfmN76gUHf4FCSEupDbE=" #https://docs.travis-ci.com/user/encryption-keys/
+    file_glob: true # http://stackoverflow.com/a/28579635/1320237
+    file: 
+     - "/home/travis/${image_name}" #for future we can have multiple files so doing like this
+    on:
+      all_branches: true
