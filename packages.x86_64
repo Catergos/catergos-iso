@@ -64,6 +64,9 @@ wpa_supplicant
 wvdial
 xl2tpd
 
+#Desktop
+gnome
+
 # Xorg & Graphics Drivers
 
 mesa

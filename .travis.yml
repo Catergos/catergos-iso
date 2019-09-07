@@ -12,6 +12,7 @@ arch:
   - "sudo /build/build.sh -v"
   
 script:
+- "travis_wait 30 sleep 1800 &"
 - "sudo bash arch-travis.sh"
 - "ls"
 
