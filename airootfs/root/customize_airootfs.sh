@@ -46,3 +46,6 @@ systemctl set-default graphical.target
 
 #enable Networks
 systemctl enable NetworkManager.service
+
+#gnome theme
+gsettings set org.gnome.desktop.interface icon-theme 'Luv'
