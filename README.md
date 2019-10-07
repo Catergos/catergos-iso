@@ -17,3 +17,4 @@ this is the repo with source code of catergos iso
    ```
  Now, you will be able to deploy in your own fork to test before actually deploying.
   
+![fork and like](https://github.com/xeon-zolt/catergos-iso/blob/master/Peek%202019-10-07%2014-55.gif)
