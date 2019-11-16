@@ -12,6 +12,10 @@ work_dir=work
 out_dir=out
 gpg_key=
 
+# Cnchi GIT data
+CNCHI_GIT_BRANCH="master"
+CNCHI_GIT_URL="https://github.com/Catergos/Cnchi/archive/${CNCHI_GIT_BRANCH}.zip"
+
 verbose=""
 script_path=$(readlink -f ${0%/*})
 
