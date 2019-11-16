@@ -107,6 +107,39 @@ make_customize_airootfs() {
     rm ${work_dir}/x86_64/airootfs/root/customize_airootfs.sh
 }
 
+cnchi_git() {
+    echo
+    echo ">>> Warning! Installing Cnchi Installer from GIT (${CNCHI_GIT_BRANCH} branch)"
+    wget "${CNCHI_GIT_URL}" -O ${SCRIPT_PATH}/cnchi-git.zip
+    unzip -uo ${SCRIPT_PATH}/cnchi-git.zip -d ${SCRIPT_PATH}
+    rm -f ${SCRIPT_PATH}/cnchi-git.zip
+
+    CNCHI_SRC="${SCRIPT_PATH}/Cnchi-${CNCHI_GIT_BRANCH}"
+
+    install -d ${ROOTFS}/usr/share/{cnchi,locale}
+    install -Dm755 "${CNCHI_SRC}/bin/cnchi" "${ROOTFS}/usr/bin/cnchi"
+    install -Dm755 "${CNCHI_SRC}/cnchi.desktop" "${ROOTFS}/usr/share/applications/cnchi.desktop"
+    install -Dm644 "${CNCHI_SRC}/data/images/antergos/antergos-icon.png" "${ROOTFS}/usr/share/pixmaps/cnchi.png"
+
+    # TODO: This should be included in Cnchi's src code as a separate file
+    # (as both files are needed to run cnchi)
+    sed -r -i 's|\/usr.+ -v|pkexec /usr/share/cnchi/bin/cnchi -s bugsnag|g' "${ROOTFS}/usr/bin/cnchi"
+
+    for i in ${CNCHI_SRC}/cnchi ${CNCHI_SRC}/bin ${CNCHI_SRC}/data ${CNCHI_SRC}/scripts ${CNCHI_SRC}/ui; do
+        cp -R ${i} "${ROOTFS}/usr/share/cnchi/"
+    done
+
+    for files in ${CNCHI_SRC}/po/*; do
+        if [ -f "$files" ] && [ "$files" != 'po/cnchi.pot' ]; then
+            STRING_PO=`echo ${files#*/}`
+            STRING=`echo ${STRING_PO%.po}`
+            mkdir -p ${ROOTFS}/usr/share/locale/${STRING}/LC_MESSAGES
+            msgfmt $files -o ${ROOTFS}/usr/share/locale/${STRING}/LC_MESSAGES/cnchi.mo
+            echo "${STRING} installed..."
+        fi
+    done
+}
+
 # Prepare kernel/initramfs ${install_dir}/boot/
 make_boot() {
     mkdir -p ${work_dir}/iso/${install_dir}/boot/x86_64
